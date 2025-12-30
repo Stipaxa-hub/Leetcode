@@ -1,0 +1,25 @@
+class Solution {
+    public boolean canPlaceFlowers(int[] flowerbed, int n) {
+        int counterFlowersAvaibility = 0;
+        
+        for(int i = 0; i < flowerbed.length; i++) {
+            if (flowerbed[i] == 1) {
+                continue;
+            }
+
+            boolean isLeftEmpty = (i == 0) || (flowerbed[i - 1] == 0);
+
+            boolean isRightEmpty = (i == flowerbed.length - 1) || (flowerbed[i + 1] == 0);
+
+            if (isLeftEmpty && isRightEmpty) {
+                flowerbed[i] = 1;
+                counterFlowersAvaibility++;
+                if (counterFlowersAvaibility >= n) {
+                    return true;
+                }
+            }
+        }
+
+        return counterFlowersAvaibility >= n;
+    }
+}
